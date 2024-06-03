@@ -102,6 +102,98 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    errorBtns[0].addEventListener('click', () => {
+      let output = document.querySelector('output');
+      let firstNum = document.querySelector('#first-num').value;
+      let secondNum = document.querySelector('#second-num').value;
+      let operator = document.querySelector('#operator').value;
+      console.log(eval(`${firstNum} ${operator} ${secondNum}`));
+    });
+
+    errorBtns[1].addEventListener('click', () => {
+      let firstNum = document.querySelector('#first-num').value;
+      let secondNum = document.querySelector('#second-num').value;
+      let operator = document.querySelector('#operator').value;
+      if (secondNum == '0' && operator == '/') {
+        console.error("Division by 0");
+      }
+      if (firstNum == '' || secondNum == '') {
+        console.error("One of the fields is empty");
+      }
+    });
+
+    errorBtns[2].addEventListener('click', () => {
+      let output = document.querySelector('output');
+      console.count(output.innerHTML);
+    });
+
+    errorBtns[3].addEventListener('click', () => {
+      let firstNum = document.querySelector('#first-num').value;
+      let secondNum = document.querySelector('#second-num').value;
+      let operator = document.querySelector('#operator').value;
+      if (secondNum == '0' && operator == '/') {
+        console.warn("Division by 0");
+      }
+      if (firstNum == '' || secondNum == '') {
+        console.warn("One of the fields is empty");
+      }
+    });
+
+    errorBtns[4].addEventListener('click', () => {
+      let output = document.querySelector('output');
+      let firstNum = document.querySelector('#first-num').value;
+      let secondNum = document.querySelector('#second-num').value;
+      let operator = document.querySelector('#operator').value;
+      console.assert(eval(`${firstNum} ${operator} ${secondNum}`) == output.innerHTML, "Value is incorrect / Button hasn't been clicked");
+    });
+
+    errorBtns[5].addEventListener('click', () => {
+      console.clear();
+    });
+
+    errorBtns[6].addEventListener('click', () => {
+      let form = document.querySelector('form');
+      console.dir(form);
+    });
+
+    errorBtns[7].addEventListener('click', () => {
+      let fieldset = document.querySelector('fieldset');
+      console.dirxml(fieldset);
+    });
+
+    errorBtns[8].addEventListener('click', () => {
+      console.group("Logging Group Begin! <<<<<");
+    });
+
+    errorBtns[9].addEventListener('click', () => {
+      console.groupEnd("Logging Group End! >>>>>");
+    });
+
+    errorBtns[10].addEventListener('click', () => {
+      let output = document.querySelector('output');
+      let firstNum = document.querySelector('#first-num').value;
+      let secondNum = document.querySelector('#second-num').value;
+      let operator = document.querySelector('#operator').value;
+      console.table([
+        { name: 'firstNum', age: firstNum }, 
+        { name: 'operator', age: operator }, 
+        { name: 'secondNum', age: secondNum }, 
+        { name: 'output', age: output.innerHTML }
+      ]);
+    });
+
+    errorBtns[11].addEventListener('click', () => {
+      console.time('Time to Log');
+    });
+
+    errorBtns[12].addEventListener('click', () => {
+      console.timeEnd('Time to Log');
+    });
+
+    errorBtns[13].addEventListener('click', () => {
+      console.trace('Logging stack trace');
+    });
+
   </script>
 </body>
 
