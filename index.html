@@ -5,7 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lab 9</title>
+
+  <!-- TrackJS -->
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "b90ca1826568477eb3ae1f993f062dfd"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+
+<title>Lab 9</title>
 
   <style>
     button {
@@ -88,6 +98,12 @@
   </main>
 
   <script>
+    TrackJS.track('Testing TrackJS!');
+
+    window.addEventListener('error', error => {
+      console.error(error);
+    });
+
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -95,7 +111,16 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      try {
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+        if (secondNum == '0' && operator == '/') {
+          throw(new EvalError("Division by 0 error"));
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        output.innerHTML = "Error";
+      }
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
@@ -192,6 +217,10 @@
 
     errorBtns[13].addEventListener('click', () => {
       console.trace('Logging stack trace');
+    });
+
+    errorBtns[14].addEventListener('click', () => {
+      throw new Error('Global error triggered');
     });
 
   </script>
